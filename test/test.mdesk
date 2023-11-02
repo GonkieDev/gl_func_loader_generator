@@ -1,0 +1,6 @@
+@gl void glGenVertexArrays(GLsizei n, GLuint *arrays);
+@gl void glDeleteFrameBuffers(n, const GLuint *framebuffers);
+
+@typedef_only @gl void (APIENTRY *DEBUGPROC)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
+@gl @debug void glGetShaderiv(GLuint shader, GLenum pname, GLint *params);
