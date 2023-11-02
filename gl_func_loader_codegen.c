@@ -153,7 +153,7 @@ main(int argc, char **argv)
 #  define GFLC_GUARD GFLC_OUTPUT_FILE_NAME "_INCLUDE_H"
 # endif
         fprintf(h, "#if !defined(" GFLC_GUARD ")\n");
-        fprintf(h, "#define " GFLC_GUARD ")\n\n");
+        fprintf(h, "#define " GFLC_GUARD "\n\n");
 #endif // #if GFLC_USE_GUARDS
         
         fprintf(h, GFLC_VISUAL_DIVISION);
@@ -290,10 +290,7 @@ gflc_output_all_function_pointers(FILE *f)
     {
         if (func_info->typedefOnly || !func_info->debugOnly)
             continue;
-        MD_ArenaTemp scratch = MD_ArenaBeginTemp(arena);
-        MD_String8 typedefStr = gflc_get_function_typedef(scratch.arena, func_info);
-        fprintf(f, "%.*s\n", MD_S8VArg(typedefStr));
-        MD_ArenaEndTemp(scratch);
+        fprintf(f, GFLC_GL_FUNC_NAME " %.*s *%.*s;\n", MD_S8VArg(func_info->functionType), MD_S8VArg(func_info->funcNameStr));
     }
     fprintf(f, "#endif // " GFLC_DEBUG_GUARD "\n");
 }
